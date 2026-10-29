@@ -88,7 +88,7 @@ bayesian_gru_zynq7020/
 
 1. **确认实物照片**：`design_report.docx` 图 3-1 已替换为开发板实物照片，提交前再检查清晰度与图注。
 2. **原始会话截图**：已导出 3 页 `llm_collaboration_record.docx`；如赛事要求原始界面，附会话截图/导出文件。
-3. **确认开源地址**：README 补 GitHub/Gitee 链接；没有就删除“开源”相关表述。
+3. **开源地址**：https://github.com/zhangrunhan666-hue/bayesian_gru_zynq7020
 4. **确认 SD 卡文件**：`board/BOOT.BIN` + `data/CLIPS.BIN` 必须同时存在。
 5. **检查作品简介边界**：多目标 BO、稀疏变分推断未实现，报告已写成目标/后续，答辩口径要一致。
 6. **HLS C 仿真**：已通过，`max_gi_err=0.000015 errors=0`，日志在 `sim/`。
@@ -103,4 +103,4 @@ bayesian_gru_zynq7020/
 最大风险：简介中的多目标 BO/稀疏 VI 与实物不一致
 ```
 
-建议先补 **开放源码地址 + 原始会话截图（如要求）**，再提交。
+开源地址已补；如赛事要求原始会话界面，再附截图即可。

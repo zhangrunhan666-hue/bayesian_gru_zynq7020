@@ -41,6 +41,10 @@ report/     设计报告、最终结果、演示指南、LLM 协作记录
 
 见 `build/build_steps.md`。工具链：Vivado/Vitis/HLS 2026.1，Vitis 2026.1，目标器件 `xc7z020clg400-2`。
 
+## 开源地址
+
+https://github.com/zhangrunhan666-hue/bayesian_gru_zynq7020
+
 ## 许可
 
 MIT，见 `LICENSE`。
