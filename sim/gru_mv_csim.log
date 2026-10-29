@@ -1,0 +1,7 @@
+INFO: [SIM 2] *************** CSIM start ***************
+   Compiling ../../../../../../hls_gru/gru_mv_tb.cpp in debug mode
+   Compiling ../../../../../../hls_gru/gru_mv.cpp in debug mode
+   Generating csim.exe
+max_gi_err=0.000015 errors=0
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

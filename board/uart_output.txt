@@ -1,0 +1,20 @@
+Jester GRU PS+PL: 8 x 32 x 32, H=64, classes=3
+clips=1611  IP base=0x43c00000
+Adaptive MC: Kmin=3 Kmax=5 earlyH<0.30 p=0.15
+CLIPS.BIN loaded from SD
+inferencing 1611 clips...
+.......... 100/1611
+...
+.......... 1600/1611
+done: 1272/1611 correct
+Stop Sign: 389/536
+Thumb Up: 417/539
+Thumb Down: 466/536
+mean entropy: 243/1000
+accept H<=0.50: 1042/1201, acc=867/1000
+reject H>0.50: 230/410, acc=560/1000
+mean entropy correct: 184/1000, wrong: 467/1000
+max entropy: clip 1434, H=1094/1000
+time: 51047 ms total, 31 ms/clip
+adaptive K counts: K3=1061 K4=19 K5=531
+PC det accuracy: 1285/1611

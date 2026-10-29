@@ -1,0 +1,268 @@
+
+
+================================================================
+== Synthesis Summary Report of 'gru_mv'
+================================================================
++ General Information: 
+    * Date:           Thu Oct 29 14:45:52 2026
+    * Version:        2026.1 (Build 6493734 on Jun 16 2026)
+    * Project:        gru_mv
+    * Solution:       hls
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-2
+    
+
+* Performance & Resource Estimates: 
++--------------------------------------+------+---------------+----------+---------+------+----------+---------+-----------+------+-----------+----------+-----------+-----------+-----+
+|                Modules               | Issue|               | Iteration|         | Trip |          |       Latency       |      |           |          |           |           |     |
+|                & Loops               | Type | Violation Type|  Latency | Interval| Count| Pipelined| (cycles)|    (ns)   | Slack|   BRAM    |    DSP   |     FF    |    LUT    | URAM|
++--------------------------------------+------+---------------+----------+---------+------+----------+---------+-----------+------+-----------+----------+-----------+-----------+-----+
+|+ gru_mv                              |     -|              -|         -|    22917|     -|        no|    22916|  2.292e+05|  0.16|  260 (92%)|  24 (10%)|  1908 (1%)|  3098 (5%)|    -|
+| + gru_mv_Pipeline_VITIS_LOOP_18_1    |     -|              -|         -|     1026|     -|       yes|     1026|  1.026e+04|  3.22|          -|         -|   24 (~0%)|   61 (~0%)|    -|
+|  o VITIS_LOOP_18_1                   |     -|              -|         2|        1|  1024|       yes|     1024|  1.024e+04|  7.30|          -|         -|          -|          -|    -|
+| o VITIS_LOOP_24_2                    |     -|              -|       114|        -|   192|        no|    21888|  2.189e+05|  7.30|          -|         -|          -|          -|    -|
+|  + gru_mv_Pipeline_VITIS_LOOP_31_4   |     -|              -|         -|       69|     -|       yes|       69|    690.000|  2.48|  256 (91%)|   16 (7%)|  565 (~0%)|  369 (~0%)|    -|
+|   o VITIS_LOOP_31_4                  |     -|              -|         5|        1|    64|       yes|       67|    670.000|  7.30|          -|         -|          -|          -|    -|
+|  + gru_mv_Pipeline_VITIS_LOOP_40_7   |     -|              -|         -|       10|     -|       yes|       10|    100.000|  1.65|          -|         -|  135 (~0%)|  216 (~0%)|    -|
+|   o VITIS_LOOP_40_7                  |     -|              -|         1|        1|     8|       yes|        8|     80.000|  7.30|          -|         -|          -|          -|    -|
+|  + gru_mv_Pipeline_VITIS_LOOP_40_71  |     -|              -|         -|        6|     -|       yes|        6|     60.000|  1.99|          -|         -|    5 (~0%)|  139 (~0%)|    -|
+|   o VITIS_LOOP_40_7                  |     -|              -|         1|        1|     4|       yes|        4|     40.000|  7.30|          -|         -|          -|          -|    -|
+|  + gru_mv_Pipeline_VITIS_LOOP_40_72  |     -|              -|         -|        4|     -|       yes|        4|     40.000|  3.47|          -|         -|    4 (~0%)|  154 (~0%)|    -|
+|   o VITIS_LOOP_40_7                  |     -|              -|         1|        1|     2|       yes|        2|     20.000|  7.30|          -|         -|          -|          -|    -|
++--------------------------------------+------+---------------+----------+---------+------+----------+---------+-----------+------+-----------+----------+-----------+-----------+-----+
+    Name Prefix: '+' for module, 'o' for loop, '*' for dataflow
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+-------------------+
+| Interface     | Data Width | Address Width | Offset | Register | Resource Estimate |
++---------------+------------+---------------+--------+----------+-------------------+
+| s_axi_control | 32         | 12            | 1024   | 0        | BRAM=3            |
++---------------+------------+---------------+--------+----------+-------------------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+--------------------+
+| Argument | Direction | Datatype           |
++----------+-----------+--------------------+
+| x        | in        | ap_uint<8> const * |
+| gi       | out       | float*             |
++----------+-----------+--------------------+
+
+* SW-to-HW Mapping
++----------+---------------+---------+--------------------------------+
+| Argument | HW Interface  | HW Type | HW Info                        |
++----------+---------------+---------+--------------------------------+
+| x        | s_axi_control | memory  | name=x offset=1024 range=1024  |
+| gi       | s_axi_control | memory  | name=gi offset=2048 range=1024 |
++----------+---------------+---------+--------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++---------------------------------------+-----+--------+---------------+-----------+--------------------------+---------+
+| Name                                  | DSP | Pragma | Variable      | Op        | Impl                     | Latency |
++---------------------------------------+-----+--------+---------------+-----------+--------------------------+---------+
+| + gru_mv                              | 24  |        |               |           |                          |         |
+|   icmp_ln24_fu_474_p2                 |     |        | icmp_ln24     | seteq     | auto                     | 0       |
+|   add_ln24_fu_480_p2                  |     |        | add_ln24      | add       | fabric                   | 0       |
+|   add_ln41_fu_621_p2                  |     |        | add_ln41      | add       | fabric                   | 0       |
+|   sitofp_32ns_32_5_no_dsp_1_U126      |     |        | conv          | sitofp    | auto                     | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U124  | 3   |        | mul           | fmul      | maxdsp                   | 3       |
+|   sitofp_32s_32_5_no_dsp_1_U127       |     |        | conv1         | sitofp    | auto                     | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U125  | 3   |        | mul1          | fmul      | maxdsp                   | 3       |
+|   fadd_32ns_32ns_32_5_full_dsp_1_U123 | 2   |        | add           | fadd      | fulldsp                  | 4       |
+|  + gru_mv_Pipeline_VITIS_LOOP_18_1    | 0   |        |               |           |                          |         |
+|    icmp_ln18_fu_359_p2                |     |        | icmp_ln18     | seteq     | auto                     | 0       |
+|    add_ln18_fu_365_p2                 |     |        | add_ln18      | add       | fabric                   | 0       |
+|  + gru_mv_Pipeline_VITIS_LOOP_31_4    | 16  |        |               |           |                          |         |
+|    mac_muladd_16s_8ns_30s_30_4_1_U18  | 1   |        | mul_ln35      | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U18  | 1   |        | sext_ln35_1   | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U18  | 1   |        | add_ln35      | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U19  | 1   |        | mul_ln35_1    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U19  | 1   |        | sext_ln35_3   | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U19  | 1   |        | add_ln35_1    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U20  | 1   |        | mul_ln35_2    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U20  | 1   |        | sext_ln35_5   | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U20  | 1   |        | add_ln35_2    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U21  | 1   |        | mul_ln35_3    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U21  | 1   |        | sext_ln35_7   | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U21  | 1   |        | add_ln35_3    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U22  | 1   |        | mul_ln35_4    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U22  | 1   |        | sext_ln35_9   | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U22  | 1   |        | add_ln35_4    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U23  | 1   |        | mul_ln35_5    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U23  | 1   |        | sext_ln35_11  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U23  | 1   |        | add_ln35_5    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U24  | 1   |        | mul_ln35_6    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U24  | 1   |        | sext_ln35_13  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U24  | 1   |        | add_ln35_6    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U25  | 1   |        | mul_ln35_7    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U25  | 1   |        | sext_ln35_15  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U25  | 1   |        | add_ln35_7    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U26  | 1   |        | mul_ln35_8    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U26  | 1   |        | sext_ln35_17  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U26  | 1   |        | add_ln35_8    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U27  | 1   |        | mul_ln35_9    | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U27  | 1   |        | sext_ln35_19  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U27  | 1   |        | add_ln35_9    | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U28  | 1   |        | mul_ln35_10   | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U28  | 1   |        | sext_ln35_21  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U28  | 1   |        | add_ln35_10   | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U29  | 1   |        | mul_ln35_11   | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U29  | 1   |        | sext_ln35_23  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U29  | 1   |        | add_ln35_11   | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U30  | 1   |        | mul_ln35_12   | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U30  | 1   |        | sext_ln35_25  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U30  | 1   |        | add_ln35_12   | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U31  | 1   |        | mul_ln35_13   | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U31  | 1   |        | sext_ln35_27  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U31  | 1   |        | add_ln35_13   | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U32  | 1   |        | mul_ln35_14   | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U32  | 1   |        | sext_ln35_29  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U32  | 1   |        | add_ln35_14   | add       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U33  | 1   |        | mul_ln35_15   | mul       | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U33  | 1   |        | sext_ln35_31  | sext      | dsp_slice                | 3       |
+|    mac_muladd_16s_8ns_30s_30_4_1_U33  | 1   |        | add_ln35_15   | add       | dsp_slice                | 3       |
+|    add_ln31_fu_896_p2                 |     |        | add_ln31      | add       | fabric                   | 0       |
+|  + gru_mv_Pipeline_VITIS_LOOP_40_7    | 0   |        |               |           |                          |         |
+|    icmp_ln40_fu_312_p2                |     |        | icmp_ln40     | seteq     | auto                     | 0       |
+|    add_ln40_fu_318_p2                 |     |        | add_ln40      | add       | fabric                   | 0       |
+|    sparsemux_17_3_30_1_1_U84          |     |        | tmp           | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_17_3_32_1_1_U85          |     |        | tmp_1         | sparsemux | compactencoding_dontcare | 0       |
+|    acc_12_fu_416_p2                   |     |        | acc_12        | add       | fabric                   | 0       |
+|  + gru_mv_Pipeline_VITIS_LOOP_40_71   | 0   |        |               |           |                          |         |
+|    icmp_ln40_fu_146_p2                |     |        | icmp_ln40     | seteq     | auto                     | 0       |
+|    add_ln40_fu_152_p2                 |     |        | add_ln40      | add       | fabric                   | 0       |
+|    sparsemux_9_2_32_1_1_U108          |     |        | tmp_2         | sparsemux | compactencoding_dontcare | 0       |
+|    sparsemux_9_2_32_1_1_U109          |     |        | tmp_3         | sparsemux | compactencoding_dontcare | 0       |
+|    acc_4_fu_210_p2                    |     |        | acc_4         | add       | fabric                   | 0       |
+|  + gru_mv_Pipeline_VITIS_LOOP_40_72   | 0   |        |               |           |                          |         |
+|    icmp_ln40_fu_88_p2                 |     |        | icmp_ln40     | seteq     | auto                     | 0       |
+|    add_ln40_fu_94_p2                  |     |        | add_ln40      | add       | fabric                   | 0       |
+|    icmp_ln41_fu_100_p2                |     |        | icmp_ln41     | seteq     | auto                     | 0       |
+|    select_ln41_fu_106_p3              |     |        | select_ln41   | select    | auto_sel                 | 0       |
+|    select_ln41_1_fu_114_p3            |     |        | select_ln41_1 | select    | auto_sel                 | 0       |
+|    acc_2_fu_122_p2                    |     |        | acc_2         | add       | fabric                   | 0       |
+|    icmp_ln41_1_fu_130_p2              |     |        | icmp_ln41_1   | seteq     | auto                     | 0       |
++---------------------------------------+-----+--------+---------------+-----------+--------------------------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++------------------------------------+--------------+-----------+------+------+--------+--------+--------------+------+---------+------------------+
+| Name                               | Usage        | Type      | BRAM | URAM | CE_REG | Pragma | Variable     | Impl | Latency | Bitwidth, Depth, |
+|                                    |              |           |      |      |        |        |              |      |         | Banks            |
++------------------------------------+--------------+-----------+------+------+--------+--------+--------------+------+---------+------------------+
+| + gru_mv                           |              |           | 260  | 0    |        |        |              |      |         |                  |
+|   control_s_axi_U                  | interface    | s_axilite | 3    |      |        |        |              |      |         |                  |
+|   xl_U                             | ram_1p array |           |      |      | N      |        | xl           | auto | 1       | 8, 64, 1         |
+|   xl_1_U                           | ram_1p array |           |      |      | N      |        | xl_1         | auto | 1       | 8, 64, 1         |
+|   xl_2_U                           | ram_1p array |           |      |      | N      |        | xl_2         | auto | 1       | 8, 64, 1         |
+|   xl_3_U                           | ram_1p array |           |      |      | N      |        | xl_3         | auto | 1       | 8, 64, 1         |
+|   xl_4_U                           | ram_1p array |           |      |      | N      |        | xl_4         | auto | 1       | 8, 64, 1         |
+|   xl_5_U                           | ram_1p array |           |      |      | N      |        | xl_5         | auto | 1       | 8, 64, 1         |
+|   xl_6_U                           | ram_1p array |           |      |      | N      |        | xl_6         | auto | 1       | 8, 64, 1         |
+|   xl_7_U                           | ram_1p array |           |      |      | N      |        | xl_7         | auto | 1       | 8, 64, 1         |
+|   xl_8_U                           | ram_1p array |           |      |      | N      |        | xl_8         | auto | 1       | 8, 64, 1         |
+|   xl_9_U                           | ram_1p array |           |      |      | N      |        | xl_9         | auto | 1       | 8, 64, 1         |
+|   xl_10_U                          | ram_1p array |           |      |      | N      |        | xl_10        | auto | 1       | 8, 64, 1         |
+|   xl_11_U                          | ram_1p array |           |      |      | N      |        | xl_11        | auto | 1       | 8, 64, 1         |
+|   xl_12_U                          | ram_1p array |           |      |      | N      |        | xl_12        | auto | 1       | 8, 64, 1         |
+|   xl_13_U                          | ram_1p array |           |      |      | N      |        | xl_13        | auto | 1       | 8, 64, 1         |
+|   xl_14_U                          | ram_1p array |           |      |      | N      |        | xl_14        | auto | 1       | 8, 64, 1         |
+|   xl_15_U                          | ram_1p array |           |      |      | N      |        | xl_15        | auto | 1       | 8, 64, 1         |
+|   b_ih_U                           | rom_1p       |           | 1    |      | N      |        | b_ih         | auto | 1       | 16, 192, 1       |
+|  + gru_mv_Pipeline_VITIS_LOOP_31_4 |              |           | 256  | 0    |        |        |              |      |         |                  |
+|    p_ZL4W_ih_0_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_0  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_1_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_1  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_2_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_2  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_3_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_3  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_4_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_4  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_5_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_5  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_6_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_6  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_7_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_7  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_8_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_8  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_9_U                   | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_9  | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_10_U                  | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_10 | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_11_U                  | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_11 | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_12_U                  | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_12 | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_13_U                  | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_13 | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_14_U                  | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_14 | auto | 1       | 16, 12288, 1     |
+|    p_ZL4W_ih_15_U                  | rom_1p       |           | 16   |      | N      |        | p_ZL4W_ih_15 | auto | 1       | 16, 12288, 1     |
++------------------------------------+--------------+-----------+------+------+--------+--------+--------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Ignored Pragmas
++--------+---------+-----------------------------------------+-----------------+
+| Type   | Options | Location                                | Messages        |
++--------+---------+-----------------------------------------+-----------------+
+| UNROLL |         | in gru_mv (../../hls_gru/gru_mv.cpp:34) | Not implemented |
++--------+---------+-----------------------------------------+-----------------+
+
+* Inferred Pragmas
++----------+---------+------------------------------------------------------------------------------------------------------------------+-------------------------------+
+| Type     | Options | Location                                                                                                         | Inferred From                 |
++----------+---------+------------------------------------------------------------------------------------------------------------------+-------------------------------+
+| PIPELINE |         | loop VITIS_LOOP_40_7 (D:/dsh-projects/kth_fpga/hls_gru/gru_mv.cpp:40:30) in gru_mv (../../hls_gru/gru_mv.cpp:40) | syn.compile.pipeline_loops=64 |
++----------+---------+------------------------------------------------------------------------------------------------------------------+-------------------------------+
+
+* Implemented Pragmas
++-----------------+-------------------------------------------+-----------------------------------------+
+| Type            | Options                                   | Location                                |
++-----------------+-------------------------------------------+-----------------------------------------+
+| ARRAY_PARTITION | dim=1 type=cyclic factor=16 variable=xl   | in gru_mv (../../hls_gru/gru_mv.cpp:15) |
+| ARRAY_PARTITION | dim=2 type=cyclic factor=16 variable=W_ih | in gru_mv (../../hls_gru/gru_mv.cpp:16) |
+| ARRAY_PARTITION | dim=1 type=complete variable=acc          | in gru_mv (../../hls_gru/gru_mv.cpp:26) |
+| UNROLL          |                                           | in gru_mv (../../hls_gru/gru_mv.cpp:28) |
+| UNROLL          |                                           | in gru_mv (../../hls_gru/gru_mv.cpp:39) |
++-----------------+-------------------------------------------+-----------------------------------------+
+
+* Valid Pragma Syntax
++-----------------+--------------------------------------+-----------------------------------------+
+| Type            | Options                              | Location                                |
++-----------------+--------------------------------------+-----------------------------------------+
+| INTERFACE       | s_axilite port=x bundle=control      | in gru_mv (../../hls_gru/gru_mv.cpp:9)  |
+| INTERFACE       | s_axilite port=gi bundle=control     | in gru_mv (../../hls_gru/gru_mv.cpp:10) |
+| INTERFACE       | s_axilite port=return bundle=control | in gru_mv (../../hls_gru/gru_mv.cpp:11) |
+| ARRAY_PARTITION | variable=xl cyclic factor=16 dim=1   | in gru_mv (../../hls_gru/gru_mv.cpp:15) |
+| ARRAY_PARTITION | variable=W_ih cyclic factor=16 dim=2 | in gru_mv (../../hls_gru/gru_mv.cpp:16) |
+| PIPELINE        | ii=1                                 | in gru_mv (../../hls_gru/gru_mv.cpp:19) |
+| ARRAY_PARTITION | variable=acc complete                | in gru_mv (../../hls_gru/gru_mv.cpp:26) |
+| UNROLL          |                                      | in gru_mv (../../hls_gru/gru_mv.cpp:28) |
+| PIPELINE        | ii=1                                 | in gru_mv (../../hls_gru/gru_mv.cpp:32) |
+| UNROLL          |                                      | in gru_mv (../../hls_gru/gru_mv.cpp:39) |
++-----------------+--------------------------------------+-----------------------------------------+
+
+

@@ -1,0 +1,72 @@
+  **** HLS Build v2026.1 6493734
+INFO: [HLS 200-2005] Using work_dir D:/dsh-projects/kth_fpga/vitis_ws/gru_mv_hls/gru_mv 
+INFO: [HLS 200-2176] Writing Vitis IDE component file D:/dsh-projects/kth_fpga/vitis_ws/gru_mv_hls/gru_mv/vitis-comp.json
+INFO: [HLS 200-10] Creating and opening component 'D:/dsh-projects/kth_fpga/vitis_ws/gru_mv_hls/gru_mv'.
+INFO: [HLS 200-2174] Applying component config ini file gru_mv.cfg
+INFO: [HLS 200-1465] Applying config ini 'syn.file=D:/dsh-projects/kth_fpga/hls_gru/gru_mv.cpp' from gru_mv.cfg(7)
+INFO: [HLS 200-10] Adding design file 'D:/dsh-projects/kth_fpga/hls_gru/gru_mv.cpp' to the project
+INFO: [HLS 200-1465] Applying config ini 'syn.file=D:/dsh-projects/kth_fpga/hls_gru/gru_mv.h' from gru_mv.cfg(8)
+INFO: [HLS 200-10] Adding design file 'D:/dsh-projects/kth_fpga/hls_gru/gru_mv.h' to the project
+INFO: [HLS 200-1465] Applying config ini 'syn.file=D:/dsh-projects/kth_fpga/hls_gru/weights_hls.h' from gru_mv.cfg(9)
+INFO: [HLS 200-10] Adding design file 'D:/dsh-projects/kth_fpga/hls_gru/weights_hls.h' to the project
+INFO: [HLS 200-1465] Applying config ini 'tb.file=D:/dsh-projects/kth_fpga/hls_gru/gru_mv_tb.cpp' from gru_mv.cfg(10)
+INFO: [HLS 200-10] Adding test bench file 'D:/dsh-projects/kth_fpga/hls_gru/gru_mv_tb.cpp' to the project
+INFO: [HLS 200-1465] Applying config ini 'tb.file=D:/dsh-projects/kth_fpga/hls_gru/tb_data.h' from gru_mv.cfg(11)
+INFO: [HLS 200-10] Adding test bench file 'D:/dsh-projects/kth_fpga/hls_gru/tb_data.h' to the project
+INFO: [HLS 200-1465] Applying config ini 'syn.top=gru_mv' from gru_mv.cfg(6)
+INFO: [HLS 200-1465] Applying config ini 'part=xc7z020clg400-2' from gru_mv.cfg(1)
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-2'
+INFO: [HLS 200-1465] Applying config ini 'clock=10ns' from gru_mv.cfg(12)
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1465] Applying config ini 'csim.clean=1' from gru_mv.cfg(19)
+INFO: [HLS 200-1465] Applying config ini 'package.ip.description=GRU W_ih matrix-vector accelerator' from gru_mv.cfg(13)
+INFO: [HLS 200-1465] Applying config ini 'package.ip.display_name=gru_mv' from gru_mv.cfg(14)
+INFO: [HLS 200-1465] Applying config ini 'package.ip.library=hls' from gru_mv.cfg(15)
+INFO: [HLS 200-1465] Applying config ini 'package.ip.taxonomy=/VIVADO_HLS_IP' from gru_mv.cfg(16)
+INFO: [HLS 200-1465] Applying config ini 'package.ip.vendor=xilinx.com' from gru_mv.cfg(17)
+INFO: [HLS 200-1465] Applying config ini 'package.ip.version=1.0' from gru_mv.cfg(18)
+INFO: [HLS 200-1465] Applying config ini 'package.output.format=ip_catalog' from gru_mv.cfg(4)
+INFO: [HLS 200-2176] Writing Vitis IDE component file D:/dsh-projects/kth_fpga/vitis_ws/gru_mv_hls/gru_mv/vitis-comp.json
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [HLS 200-2191] C-Simulation will use clang-16 as the compiler
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+   Compiling ../../../../../../hls_gru/gru_mv_tb.cpp in debug mode
+   Compiling ../../../../../../hls_gru/gru_mv.cpp in debug mode
+   Generating csim.exe
+In file included from ../../../../../../hls_gru/gru_mv_tb.cpp:1:
+In file included from ../../../../../../hls_gru/gru_mv.h:4:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\ap_int.h:10:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\etc/ap_common.h:668:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\etc/ap_private.h:68:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\hls_half.h:26:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include/etc/hls_half_fpo.h:19:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\hls_fpo.h:140:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include/floating_point_v7_1_bitacc_cmodel.h:150:
+D:/AMD/2026.1/2026.1/Vitis/include\gmp.h:58:9: warning: '__GMP_LIBGMP_DLL' macro redefined [-Wmacro-redefined]
+#define __GMP_LIBGMP_DLL  0
+        ^
+D:/AMD/2026.1/2026.1/Vitis/include/floating_point_v7_1_bitacc_cmodel.h:142:9: note: previous definition is here
+#define __GMP_LIBGMP_DLL 1
+        ^
+1 warning generated.
+In file included from ../../../../../../hls_gru/gru_mv.cpp:1:
+In file included from ../../../../../../hls_gru/gru_mv.h:4:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\ap_int.h:10:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\etc/ap_common.h:668:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\etc/ap_private.h:68:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\hls_half.h:26:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include/etc/hls_half_fpo.h:19:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include\hls_fpo.h:140:
+In file included from D:/AMD/2026.1/2026.1/Vitis/include/floating_point_v7_1_bitacc_cmodel.h:150:
+D:/AMD/2026.1/2026.1/Vitis/include\gmp.h:58:9: warning: '__GMP_LIBGMP_DLL' macro redefined [-Wmacro-redefined]
+#define __GMP_LIBGMP_DLL  0
+        ^
+D:/AMD/2026.1/2026.1/Vitis/include/floating_point_v7_1_bitacc_cmodel.h:142:9: note: previous definition is here
+#define __GMP_LIBGMP_DLL 1
+        ^
+1 warning generated.
+max_gi_err=0.000015 errors=0
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-112] Total CPU user time: 2 seconds. Total CPU system time: 6 seconds. Total elapsed time: 15.058 seconds; peak allocated memory: 157.375 MB.
+INFO: [vitis-run 60-791] Total elapsed time: 0h 0m 22s

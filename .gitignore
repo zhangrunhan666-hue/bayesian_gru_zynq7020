@@ -1,0 +1,20 @@
+# Large Jester-derived validation data.
+# Keep it locally for the SD card, but do not publish it:
+# regenerate with src/python/pack_clips_bin.py after downloading Jester.
+data/CLIPS.BIN
+
+# OS/editor
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Vivado/Vitis transient files
+.Xil/
+*.jou
+*.str
+*.tmp
+*.cache/
